@@ -1,0 +1,34 @@
+version: '2'
+services:
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+  #      - /srv/docker/es:/usr/share/elasticsearch/data
+        - ${PWD}/es-data:/usr/share/elasticsearch/data
+    expose:
+      - 9200
+    ports:
+      - 9200:9200
+
+  kibana:
+    image: 'docker.elastic.co/kibana/kibana:7.7.1'
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana.local
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    ports:
+      - '5601:5601'
+
+  fluentd:
+    container_name: fluentd
+    image: fluent-es
+    links:
+      - elasticsearch
+    ports:
+      - "24224:24224"
