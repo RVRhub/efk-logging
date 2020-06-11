@@ -30,31 +30,3 @@ class FluentdSender : CommandLineRunner {
     }
 
 }
-
-//@Slf4j
-//class MainRunner implements CommandLineRunner {
-//
-//    private static FluentLogger LOG = FluentLogger . getLogger ("app");
-//}
-//    @Override
-//    void run(String... args) throws Exception {
-//
-//    Map<String, Object> data = new HashMap<String, Object>();
-//    data.put("search_id", "1");
-//    data.put("title", "test_title");
-//    LOG.log("follow", data);
-//
-//    while (true) {
-//        log.info(getGooglePage())
-//        MDC.put("session_id", "1111111111111")
-//        sleep 3000
-//    }
-
-
-
-//    private String getGooglePage() {
-//        def client = new RESTClient('http://google.com')
-//        def response = client.get()
-//        new JsonSlurper().parse(response.data).value.joke
-//    }
-
